@@ -1,12 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import i18n from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import common_vi from './locates/vi/common.json';
+import common_en from './locates/en/common.json';
+
+i18n.init({
+  interpolation: { escapeValue: false },
+  lng: 'en',
+  resources: {
+    vi: {
+      common: common_vi,
+    },
+    en: {
+      common: common_en,
+    },
+  },
+  defaultNS: 'common'
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <I18nextProvider i18n={i18n}>
+      <App />
+    </I18nextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
